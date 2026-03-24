@@ -20,11 +20,26 @@ class ViewController: UIViewController {
 		} else {
 			self.view.backgroundColor = UIColor.white
 		}
+        
+        applyPurpleCyanGradientToSliders(in: view)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func applyPurpleCyanGradientToSliders(in root: UIView) {
+        for subview in root.subviews {
+            if let slider = subview as? TactileSlider {
+                slider.gradientTintColors = [
+                    UIColor(hex: "#D478FF")!,
+                    UIColor(hex: "#46D3FF")!
+                ]
+                slider.tintColor = UIColor(hex: "#D478FF")!
+            }
+            applyPurpleCyanGradientToSliders(in: subview)
+        }
     }
 
 }
